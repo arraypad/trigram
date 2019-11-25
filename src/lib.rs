@@ -91,7 +91,7 @@ pub fn similarity(a: &str, b: &str) -> f32 {
 
 /// Jaccard similarity between two sets.
 /// https://en.wikipedia.org/wiki/Jaccard_index
-fn jaccard<T>(s1: &HashSet<T>, s2: &HashSet<T>) -> f32
+pub fn jaccard<T>(s1: &HashSet<T>, s2: &HashSet<T>) -> f32
 where
     T: Hash + Eq,
 {
@@ -105,7 +105,7 @@ where
 }
 
 /// Returns the set of trigrams found in s, except ones ending in two spaces.
-fn trigrams(s: &str) -> HashSet<&str> {
+pub fn trigrams(s: &str) -> HashSet<&str> {
     // The filter is to match an idiosyncrasy of the Postgres trigram extension:
     // it doesn't count trigrams that end with two spaces.
     let idxs = rune_indexes(&s);
