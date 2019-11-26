@@ -105,13 +105,13 @@ where
 }
 
 /// Returns the set of trigrams found in s, except ones ending in two spaces.
-pub fn trigrams(s: &str) -> HashSet<&str> {
+pub fn trigrams(s: &str) -> HashSet<String> {
     // The filter is to match an idiosyncrasy of the Postgres trigram extension:
     // it doesn't count trigrams that end with two spaces.
     let idxs = rune_indexes(&s);
     HashSet::from_iter(
         (0..idxs.len() - 3)
-            .map(|i| &s[idxs[i]..idxs[i + 3]])
+            .map(|i| s[idxs[i]..idxs[i + 3]].to_string())
             .filter(|t| !t.ends_with("  ")),
     )
 }
